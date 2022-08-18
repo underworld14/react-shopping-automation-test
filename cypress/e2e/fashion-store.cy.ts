@@ -1,118 +1,151 @@
 /// <reference types="cypress" />
 
-describe('fashion sizes', () => {
+import FashionStorePage from '../page-object/fashion-store';
+
+const fashionStorePage = new FashionStorePage();
+
+describe('fashion stores', () => {
   const availableSizes = ['XS', 'S', 'M', 'ML', 'L', 'XL', 'XXL'];
 
   beforeEach(() => {
-    // Cypress starts out with a blank slate for each test
-    // so we must tell it to visit our website with the `cy.visit()` command.
-    // Since we want to visit the same URL at the start of all our tests,
-    // we include it in our beforeEach function so that it runs before each test
-    cy.visit('https://react-shopping-cart-67954.firebaseapp.com/');
+    cy.visit('/');
   });
 
   it('should card is empty at the beginning', () => {
-    cy.get('[title="Products in cart quantity"]').should('have.text', '0');
+    fashionStorePage.getCartQuantity().should('have.text', '0');
   });
 
   it('should have the 7 type of sizes', () => {
-    cy.get('.checkmark').should('have.length', 7);
+    fashionStorePage.getAllSizeCheckbox().should('have.length', 7);
   });
 
   it('should able to select and select multiple sizes', () => {
     availableSizes.forEach((size) => {
-      cy.get(`[data-testid=checkbox][value=${size}]`).next().click();
-      cy.wait(500);
+      fashionStorePage.getSizeCheckbox(size).click();
+      cy.wait(200);
     });
   });
 
   it('should able to uncheck size', () => {
     availableSizes.forEach((size) => {
-      cy.get(`[data-testid=checkbox][value=${size}]`).next().click();
-      cy.wait(500);
+      fashionStorePage.getSizeCheckbox(size).click();
+      cy.wait(200);
     });
 
     availableSizes.reverse().forEach((size) => {
-      cy.get(`[data-testid=checkbox][value=${size}]`).next().click();
-      cy.wait(500);
+      fashionStorePage.getSizeCheckbox(size).click();
+      cy.wait(200);
     });
   });
 
   it('should product total info match with total actual list', () => {
-    cy.get('.sc-124al1g-2').should('be.visible');
-    cy.get('.sc-ebmerl-4 > p')
+    fashionStorePage.getProductItems().should('be.visible');
+    fashionStorePage
+      .getTotalItem()
       .invoke('text')
       .then((text) => {
-        const value = text.split(' ')[0];
-        cy.get('.sc-124al1g-2').should('have.length', Number(value));
+        fashionStorePage.getProductItems().should('have.length', Number(text));
       });
   });
 
   it('open the checkout page at the beginning and alert user that should add item to the cart', () => {
-    cy.get('.sc-1h98xa9-2').click();
-    cy.contains('Add some products in the cart').should('be.visible');
-    cy.contains('Checkout').click();
+    fashionStorePage.getCartButton().click();
+    fashionStorePage.getCartPageContent().should('be.visible');
+    fashionStorePage
+      .getCartPageContent()
+      .contains('Add some products in the cart')
+      .should('be.visible');
+    fashionStorePage.getCartPageContent().contains('Checkout').click();
 
     cy.on('window:alert', (alertText) => {
       expect(alertText).to.contain('Add some product in the cart!');
     });
 
     cy.wait(200);
-    cy.get('.sc-1h98xa9-0').click();
+    fashionStorePage.getCartButton().click();
   });
 
   it('should can add product to the cart', () => {
-    cy.get('.sc-124al1g-2:first').contains('Add to cart').click();
-    cy.get('.sc-1h98xa9-1').should('be.visible');
-    cy.get('.sc-1h98xa9-3').should('have.text', '1');
-    cy.get('.sc-1h98xa9-0').click();
-    cy.get('.sc-1h98xa9-1').should('not.be.visible');
-    cy.get('[title="Products in cart quantity"]').should('have.text', '1');
+    fashionStorePage.getProductItems().first().contains('Add to cart').click();
+    fashionStorePage.getCartPageContent().should('be.visible');
+    fashionStorePage.getCartPageItemQuantity().should('have.text', 1);
+    fashionStorePage.getCartButton().click();
+    fashionStorePage.getCartPageContent().should('not.exist');
+    fashionStorePage.getCartQuantity().should('have.text', '1');
   });
 
   it('should can increase and decrease item in the cart and do checkout', () => {
-    // add 2 items to card
-    cy.get('.sc-124al1g-2:first').contains('Add to cart').click();
-    cy.get('.sc-124al1g-2:nth-child(2)').contains('Add to cart').click();
+    // add 3 items to card
+    fashionStorePage.getProductItems().eq(1).contains('Add to cart').click();
+    fashionStorePage.getCartButton().click();
+    fashionStorePage.getProductItems().eq(2).contains('Add to cart').click();
+    fashionStorePage.getCartButton().click();
+    fashionStorePage.getProductItems().eq(3).contains('Add to cart').click();
 
-    cy.get('.sc-1h98xa9-1').should('be.visible');
-    cy.get('.sc-11uohgb-0').should('have.length', 2);
+    fashionStorePage.getCartPageItemQuantity().should('have.text', 3);
+    fashionStorePage.getCartProductItems().should('have.length', 3);
 
-    // make sure the decrease button is disabled at first
-    cy.get('.sc-11uohgb-0')
-      .find('.sc-11uohgb-6')
-      .each((el) => {
-        if (el.text() === '-') {
-          cy.wrap(el).contains('-').should('be.disabled');
-        }
-      });
-
-    // increase total on first item
-    cy.get('.sc-11uohgb-0:first').as('firstItemCheckout');
-    cy.get('@firstItemCheckout').find('button').contains('+').click();
-    cy.get('@firstItemCheckout').find('button').contains('+').click();
-    cy.get('.sc-1h98xa9-3').should('have.text', '4');
+    // // increase total on first item
+    fashionStorePage
+      .getCartProductItems()
+      .eq(0)
+      .find('[data-cy="increase-quantity"]')
+      .click()
+      .click();
+    fashionStorePage.getCartPageItemQuantity().should('have.text', 5);
 
     // decrease on first item
-    cy.get('@firstItemCheckout').find('button').contains('-').click();
-    cy.get('.sc-1h98xa9-3').should('have.text', '3');
+    fashionStorePage
+      .getCartProductItems()
+      .eq(0)
+      .find('[data-cy="decrease-quantity"]')
+      .click();
+    fashionStorePage.getCartPageItemQuantity().should('have.text', 4);
 
     // remove second product
-    cy.get('.sc-11uohgb-0:nth-child(2)')
-      .find("[title='remove product from cart']")
+    fashionStorePage
+      .getCartProductItems()
+      .eq(1)
+      .find('[data-cy="remove-item"]')
       .click();
-    cy.get('.sc-1h98xa9-3').should('have.text', '2');
+    fashionStorePage.getCartProductItems().should('have.length', 2);
+    fashionStorePage.getCartPageItemQuantity().should('have.text', 3);
+
+    // sum price of all product items an assert it with subtotal
+    // let totalPrice: number = 0;
+    // fashionStorePage.getCartProductItems().each((el) => {
+    //   let quantity: number;
+    //   cy.wrap(el)
+    //     .find(`[data-cy="cart-item-quantity"]`)
+    //     .invoke('text')
+    //     .then((qty) => {
+    //       quantity = Number(qty);
+    //     });
+    //   cy.wrap(el)
+    //     .find(`[data-cy="cart-item-price"]`)
+    //     .invoke('text')
+    //     .then((value) => {
+    //       totalPrice += Number(value) * quantity;
+    //       cy.log(totalPrice.toString());
+    //     });
+    // });
+    // cy.wait(500);
+    // cy.log(totalPrice.toString());
+    // fashionStorePage.getCartTotalPrice().should('have.text', totalPrice);
+
+    // cy.log(totalPrice);
 
     // get the total checkout amount and make sure the checkout alert have same price
-    cy.get('.sc-1h98xa9-9')
+    fashionStorePage
+      .getCartTotalPrice()
       .invoke('text')
-      .then((totalAmount) => {
-        cy.get('.sc-1h98xa9-1').contains('Checkout').click();
+      .then((total) => {
+        fashionStorePage.getCartPageContent().contains('Checkout').click();
         cy.on('window:alert', (alertCheckout) => {
-          expect(alertCheckout).to.contain(totalAmount);
+          expect(alertCheckout).to.contain(total);
         });
         cy.wait(100);
-        cy.get('.sc-1h98xa9-0').as('close-chekcout').click();
+        fashionStorePage.getCartButton().click();
       });
   });
 });

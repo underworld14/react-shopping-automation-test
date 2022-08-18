@@ -25,7 +25,9 @@ const Checkbox = ({ className, label, handleOnChange }: IProps) => {
           data-testid="checkbox"
         />
 
-        <span className="checkmark">{label}</span>
+        <span className="checkmark" data-cy={`size-${label}`}>
+          {label}
+        </span>
       </label>
     </div>
   );

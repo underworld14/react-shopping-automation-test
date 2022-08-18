@@ -10,12 +10,14 @@ Object {
       >
         <button
           class="Cart__CartButton-sc-1h98xa9-0 Xqoyz"
+          data-cy="cart-button"
         >
           <div
             class="Cart__CartIcon-sc-1h98xa9-2 dFOmZq"
           >
             <div
               class="Cart__CartQuantity-sc-1h98xa9-3 gkShyn"
+              data-cy="cart-quantity"
               title="Products in cart quantity"
             >
               0
@@ -31,12 +33,14 @@ Object {
     >
       <button
         class="Cart__CartButton-sc-1h98xa9-0 Xqoyz"
+        data-cy="cart-button"
       >
         <div
           class="Cart__CartIcon-sc-1h98xa9-2 dFOmZq"
         >
           <div
             class="Cart__CartQuantity-sc-1h98xa9-3 gkShyn"
+            data-cy="cart-quantity"
             title="Products in cart quantity"
           >
             0

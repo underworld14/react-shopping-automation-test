@@ -10,6 +10,7 @@ Object {
       >
         <div
           class="Product__Container-sc-124al1g-2 kgHzaj"
+          data-cy="product-item"
           tabindex="1"
         >
           <div
@@ -65,6 +66,7 @@ Object {
         </div>
         <div
           class="Product__Container-sc-124al1g-2 rtefv"
+          data-cy="product-item"
           tabindex="1"
         >
           <div
@@ -120,6 +122,7 @@ Object {
         </div>
         <div
           class="Product__Container-sc-124al1g-2 rowhT"
+          data-cy="product-item"
           tabindex="1"
         >
           <div
@@ -177,6 +180,7 @@ Object {
     >
       <div
         class="Product__Container-sc-124al1g-2 kgHzaj"
+        data-cy="product-item"
         tabindex="1"
       >
         <div
@@ -232,6 +236,7 @@ Object {
       </div>
       <div
         class="Product__Container-sc-124al1g-2 rtefv"
+        data-cy="product-item"
         tabindex="1"
       >
         <div
@@ -287,6 +292,7 @@ Object {
       </div>
       <div
         class="Product__Container-sc-124al1g-2 rowhT"
+        data-cy="product-item"
         tabindex="1"
       >
         <div

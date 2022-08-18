@@ -26,12 +26,15 @@ const Cart = () => {
 
   return (
     <S.Container isOpen={isOpen}>
-      <S.CartButton onClick={handleToggleCart(isOpen)}>
+      <S.CartButton onClick={handleToggleCart(isOpen)} data-cy="cart-button">
         {isOpen ? (
           <span>X</span>
         ) : (
           <S.CartIcon>
-            <S.CartQuantity title="Products in cart quantity">
+            <S.CartQuantity
+              title="Products in cart quantity"
+              data-cy="cart-quantity"
+            >
               {total.productQuantity}
             </S.CartQuantity>
           </S.CartIcon>
@@ -39,10 +42,12 @@ const Cart = () => {
       </S.CartButton>
 
       {isOpen && (
-        <S.CartContent>
+        <S.CartContent data-cy="cart-page-content">
           <S.CartContentHeader>
             <S.CartIcon large>
-              <S.CartQuantity>{total.productQuantity}</S.CartQuantity>
+              <S.CartQuantity data-cy="cart-page-quantity">
+                {total.productQuantity}
+              </S.CartQuantity>
             </S.CartIcon>
             <S.HeaderTitle>Cart</S.HeaderTitle>
           </S.CartContentHeader>
@@ -52,10 +57,12 @@ const Cart = () => {
           <S.CartFooter>
             <S.Sub>SUBTOTAL</S.Sub>
             <S.SubPrice>
-              <S.SubPriceValue>{`${total.currencyFormat} ${formatPrice(
-                total.totalPrice,
-                total.currencyId
-              )}`}</S.SubPriceValue>
+              <S.SubPriceValue>
+                {`${total.currencyFormat}`}{' '}
+                <span data-cy="cart-total-price">
+                  {formatPrice(total.totalPrice, total.currencyId)}
+                </span>
+              </S.SubPriceValue>
               <S.SubPriceInstallment>
                 {total.installments ? (
                   <span>

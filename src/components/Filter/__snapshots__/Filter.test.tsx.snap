@@ -24,6 +24,7 @@ Object {
             />
             <span
               class="checkmark"
+              data-cy="size-XS"
             >
               XS
             </span>
@@ -40,6 +41,7 @@ Object {
             />
             <span
               class="checkmark"
+              data-cy="size-S"
             >
               S
             </span>
@@ -56,6 +58,7 @@ Object {
             />
             <span
               class="checkmark"
+              data-cy="size-M"
             >
               M
             </span>
@@ -72,6 +75,7 @@ Object {
             />
             <span
               class="checkmark"
+              data-cy="size-ML"
             >
               ML
             </span>
@@ -88,6 +92,7 @@ Object {
             />
             <span
               class="checkmark"
+              data-cy="size-L"
             >
               L
             </span>
@@ -104,6 +109,7 @@ Object {
             />
             <span
               class="checkmark"
+              data-cy="size-XL"
             >
               XL
             </span>
@@ -120,6 +126,7 @@ Object {
             />
             <span
               class="checkmark"
+              data-cy="size-XXL"
             >
               XXL
             </span>
@@ -148,6 +155,7 @@ Object {
           />
           <span
             class="checkmark"
+            data-cy="size-XS"
           >
             XS
           </span>
@@ -164,6 +172,7 @@ Object {
           />
           <span
             class="checkmark"
+            data-cy="size-S"
           >
             S
           </span>
@@ -180,6 +189,7 @@ Object {
           />
           <span
             class="checkmark"
+            data-cy="size-M"
           >
             M
           </span>
@@ -196,6 +206,7 @@ Object {
           />
           <span
             class="checkmark"
+            data-cy="size-ML"
           >
             ML
           </span>
@@ -212,6 +223,7 @@ Object {
           />
           <span
             class="checkmark"
+            data-cy="size-L"
           >
             L
           </span>
@@ -228,6 +240,7 @@ Object {
           />
           <span
             class="checkmark"
+            data-cy="size-XL"
           >
             XL
           </span>
@@ -244,6 +257,7 @@ Object {
           />
           <span
             class="checkmark"
+            data-cy="size-XXL"
           >
             XXL
           </span>

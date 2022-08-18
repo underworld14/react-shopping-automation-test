@@ -68,6 +68,7 @@ Object {
                   />
                   <span
                     class="checkmark"
+                    data-cy="size-XS"
                   >
                     XS
                   </span>
@@ -84,6 +85,7 @@ Object {
                   />
                   <span
                     class="checkmark"
+                    data-cy="size-S"
                   >
                     S
                   </span>
@@ -100,6 +102,7 @@ Object {
                   />
                   <span
                     class="checkmark"
+                    data-cy="size-M"
                   >
                     M
                   </span>
@@ -116,6 +119,7 @@ Object {
                   />
                   <span
                     class="checkmark"
+                    data-cy="size-ML"
                   >
                     ML
                   </span>
@@ -132,6 +136,7 @@ Object {
                   />
                   <span
                     class="checkmark"
+                    data-cy="size-L"
                   >
                     L
                   </span>
@@ -148,6 +153,7 @@ Object {
                   />
                   <span
                     class="checkmark"
+                    data-cy="size-XL"
                   >
                     XL
                   </span>
@@ -164,6 +170,7 @@ Object {
                   />
                   <span
                     class="checkmark"
+                    data-cy="size-XXL"
                   >
                     XXL
                   </span>
@@ -198,8 +205,13 @@ Object {
               class="App__MainHeader-sc-ebmerl-4 jvDqsc"
             >
               <p>
-                0
-                 Product(s) found
+                <span
+                  data-cy="total-product"
+                >
+                  0
+                </span>
+                 
+                Product(s) found
               </p>
             </main>
             <div
@@ -212,12 +224,14 @@ Object {
         >
           <button
             class="Cart__CartButton-sc-1h98xa9-0 Xqoyz"
+            data-cy="cart-button"
           >
             <div
               class="Cart__CartIcon-sc-1h98xa9-2 dFOmZq"
             >
               <div
                 class="Cart__CartQuantity-sc-1h98xa9-3 gkShyn"
+                data-cy="cart-quantity"
                 title="Products in cart quantity"
               >
                 0
@@ -292,6 +306,7 @@ Object {
                 />
                 <span
                   class="checkmark"
+                  data-cy="size-XS"
                 >
                   XS
                 </span>
@@ -308,6 +323,7 @@ Object {
                 />
                 <span
                   class="checkmark"
+                  data-cy="size-S"
                 >
                   S
                 </span>
@@ -324,6 +340,7 @@ Object {
                 />
                 <span
                   class="checkmark"
+                  data-cy="size-M"
                 >
                   M
                 </span>
@@ -340,6 +357,7 @@ Object {
                 />
                 <span
                   class="checkmark"
+                  data-cy="size-ML"
                 >
                   ML
                 </span>
@@ -356,6 +374,7 @@ Object {
                 />
                 <span
                   class="checkmark"
+                  data-cy="size-L"
                 >
                   L
                 </span>
@@ -372,6 +391,7 @@ Object {
                 />
                 <span
                   class="checkmark"
+                  data-cy="size-XL"
                 >
                   XL
                 </span>
@@ -388,6 +408,7 @@ Object {
                 />
                 <span
                   class="checkmark"
+                  data-cy="size-XXL"
                 >
                   XXL
                 </span>
@@ -422,8 +443,13 @@ Object {
             class="App__MainHeader-sc-ebmerl-4 jvDqsc"
           >
             <p>
-              0
-               Product(s) found
+              <span
+                data-cy="total-product"
+              >
+                0
+              </span>
+               
+              Product(s) found
             </p>
           </main>
           <div
@@ -436,12 +462,14 @@ Object {
       >
         <button
           class="Cart__CartButton-sc-1h98xa9-0 Xqoyz"
+          data-cy="cart-button"
         >
           <div
             class="Cart__CartIcon-sc-1h98xa9-2 dFOmZq"
           >
             <div
               class="Cart__CartQuantity-sc-1h98xa9-3 gkShyn"
+              data-cy="cart-quantity"
               title="Products in cart quantity"
             >
               0
